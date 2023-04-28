@@ -1,0 +1,7 @@
+{
+    "title":"Login",
+    "email":"ashish.rathore@calsoftinc.com",
+    "password":123456,
+    "alertMsg":"Invalid credential!!!",
+    "button":"Submit"
+}

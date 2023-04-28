@@ -1,0 +1,11 @@
+section {
+  text-align: center;
+}
+section .card {
+  width: 12rem !important;
+  float: left !important;
+  margin: 1rem;
+}
+section .card .card-footer {
+  background-color: transparent;
+}/*# sourceMappingURL=user.component.css.map */

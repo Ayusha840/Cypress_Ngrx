@@ -1,0 +1,23 @@
+{
+  "links": {
+    "loginTab": "login",
+    "userTab": "user"
+  },
+  "buttons": {
+    "userLoginBtn": "Submit",
+    "deleteuser": "DL"
+  },
+  "titles": {
+    "loginPageTitle": "Login"
+  },
+  "inputfields": {
+    "input1": ":nth-child(1) > .form-control",
+    "input2": ":nth-child(2) > .form-control"
+  },
+  "htmlTag": {
+    "cardTag": ".card"
+  },
+  "navigation": {
+    "userbtn": "User"
+  }
+}

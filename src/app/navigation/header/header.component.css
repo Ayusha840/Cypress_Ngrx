@@ -1,0 +1,12 @@
+header {
+  display: flex;
+  background-color: aliceblue;
+  padding: 1rem;
+}
+header ul {
+  display: flex;
+  justify-content: space-evenly;
+  width: 78vw;
+  text-align: center;
+  list-style: none;
+}/*# sourceMappingURL=header.component.css.map */

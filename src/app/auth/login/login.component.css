@@ -1,0 +1,20 @@
+section {
+  text-align: center;
+}
+section .nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+section .nav ul li {
+  list-style-type: none;
+  float: left;
+}
+section .form-section {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+}
+section .form-section form {
+  width: 33rem;
+}/*# sourceMappingURL=login.component.css.map */
