@@ -10,6 +10,8 @@ import { AppService } from 'src/app/services/app.service';
 export class AddUserComponent {
   addUserForm: FormGroup
   tab:string = '';
+  selectedFiles: FileList | any;
+  currentFileUpload: File | any;
   constructor(private fb: FormBuilder,    
     private _appService: AppService,
     ) {
@@ -25,20 +27,18 @@ export class AddUserComponent {
   }
   AdduserSubmit(form:boolean){
     console.log(form);
-    
   }
-  onChange(event:any) {
-    // this.addUserForm.patchValue({
-    //   avatar:event.target.files[0]
-    // })
-    let files = event.target.files[0]
-    
-
-    
-this._appService.uploadFile(files).subscribe((res)=>{
-  console.log(res);
-  
-})
+  setFormData(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) {
+        return;
+    }
+      const file = input.files[0];
+      console.log(file);
+      this._appService.uploadFile(file).subscribe((res)=>{
+        console.log(res);
+    }
+    )
       
 }
 }

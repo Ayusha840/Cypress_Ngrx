@@ -51,9 +51,8 @@ export class AppService {
 
   uploadFile(req:any){
     console.log(req);
-    var formData = new FormData();
-    formData.append('file',req,req.name);
-    console.log(formData);    
+    let formData = new FormData();
+    formData.append('file', req, req.name) 
     
 return this.http.post(`${environment.APIUrl}/upload-image`,formData)
   }
