@@ -15,27 +15,20 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/bank-acc",
+            "outputPath": "dist/bank-Acc",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -60,6 +53,15 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "e2e": {
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "vendorChunk": true,
+              "customWebpackConfig": {
+                "path": "./cypress/coverage.webpack.ts"
+              }
             }
           },
           "defaultConfiguration": "production"
@@ -76,6 +78,12 @@
           },
           "defaultConfiguration": "development"
         },
+        "serve-coverage": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "bank-Acc:build:e2e"
+          }
+        },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
@@ -85,26 +93,78 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "bank-Acc:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bank-Acc:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "bank-Acc:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "bank-Acc:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "bank-Acc:serve-coverage",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bank-Acc:serve-coverage:production"
+            }
+          }
+        },
+        "e2e-ci": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "browser": "chrome",
+            "devServerTarget": "bank-Acc:serve-coverage",
+            "headless": true,
+            "watch": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bank-Acc:serve-coverage:production"
+            }
           }
         }
       }
     }
   },
   "cli": {
-    "analytics": "441056e6-8eb8-4795-9576-c02c693a4149"
+    "analytics": "441056e6-8eb8-4795-9576-c02c693a4149",
+    "schematicCollections": ["@cypress/schematic", "@schematics/angular"]
   }
 }
