@@ -1,6 +1,7 @@
 {
   "name": "bank-acc",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +11,8 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "e2e:ci": "ng run bank-Acc:e2e-ci",
-    "e2e:coverage": "npx nyc report --reporter=lcov --reporter=text-summary"
+    "e2e:coverage": "npx nyc report --reporter=lcov --reporter=text-summary",
+    "lint": "ng lint --rulesdir eslint-rules"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +34,11 @@
   "devDependencies": {
     "@angular-builders/custom-webpack": "^15.0.0",
     "@angular-devkit/build-angular": "^15.0.1",
+    "@angular-eslint/builder": "15.2.1",
+    "@angular-eslint/eslint-plugin": "15.2.1",
+    "@angular-eslint/eslint-plugin-template": "15.2.1",
+    "@angular-eslint/schematics": "15.2.1",
+    "@angular-eslint/template-parser": "15.2.1",
     "@angular/cli": "~15.0.1",
     "@angular/compiler-cli": "^15.0.0",
     "@cypress/code-coverage": "^3.10.4",
@@ -40,7 +47,11 @@
     "@jsdevtools/coverage-istanbul-loader": "^3.0.5",
     "@types/cypress__code-coverage": "^3.10.0",
     "@types/jasmine": "~4.3.0",
+    "@typescript-eslint/eslint-plugin": "5.48.2",
+    "@typescript-eslint/parser": "5.48.2",
     "cypress": "latest",
+    "eslint": "^8.40.0",
+    "eslint-plugin-angular": "^4.1.0",
     "istanbul-lib-coverage": "^3.2.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
