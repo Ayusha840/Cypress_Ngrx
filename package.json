@@ -12,7 +12,8 @@
     "cypress:run": "cypress run",
     "e2e:ci": "ng run bank-Acc:e2e-ci",
     "e2e:coverage": "npx nyc report --reporter=lcov --reporter=text-summary",
-    "lint": "ng lint --rulesdir eslint-rules"
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix"
   },
   "private": true,
   "dependencies": {
@@ -60,6 +61,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "nyc": "^15.1.0",
+    "stylelint": "^15.6.1",
     "typescript": "~4.8.2",
     "webpack": "^5.81.0"
   }
