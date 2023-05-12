@@ -16,8 +16,6 @@ export class UserComponent implements OnInit {
         this.getUserList();
     }
     getUserList() {
-        console.log("hello");
-        
         this.service.getUserList().subscribe((res) => {
             this.userList = res.data;
         });
