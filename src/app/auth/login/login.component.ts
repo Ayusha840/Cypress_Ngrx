@@ -16,10 +16,10 @@ export class LoginComponent implements OnInit {
     appConstant: any
     constructor(
     private fb: FormBuilder,
-    private _appService: AppService,
-    private _toaster: ToastrService,
+    private appService: AppService,
+    private toaster: ToastrService,
     private router: Router,
-    private _commonService:CommonService
+    private commonService:CommonService
     ) {
         this.loginForm = fb.group({
             email: [
@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit {
     submit(form: boolean) {
         this.submitted = true
         if (form) {
-            this._appService
+            this.appService
                 .post("login", this.loginForm.value)
                 .subscribe((userRes: any) => {
                     if (userRes) {
-                        this._toaster.success(userRes.message)
+                        this.toaster.success(userRes.message)
 
-                        const token = this._commonService.getEncryptedItem(userRes.res)              
+                        const token = this.commonService.getEncryptedItem(userRes.res)              
                         localStorage.setItem("loginToken",token)
 
                         // if (userRes.res.role === 'suppport') {

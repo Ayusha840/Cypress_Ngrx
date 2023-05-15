@@ -4,6 +4,7 @@
     "source.organizeImports": true,
     "source.fixAll.eslint": true
   },
+  "prettier.semi": true,
   "[scss]": {
     "editor.formatOnSave": true
   },

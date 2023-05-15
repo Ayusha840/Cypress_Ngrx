@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-album',
-  templateUrl: './album.component.html',
-  styleUrls: ['./album.component.css']
+    selector: "app-album",
+    templateUrl: "./album.component.html",
+    styleUrls: ["./album.component.css"]
 })
 export class AlbumComponent {
-  lists:any[] = [];
+    lists:any[] = [];
 
-  constructor(
+    constructor(
     // private _commonService: CommonService
-  ) { }
+    ) { }
 
-  ngOnInit(): void {
-    this.getList();
-  }
+    ngOnInit(): void {
+        this.getList();
+    }
 
-  getList(){
+    getList(){
     // this._commonService.getList('albums').subscribe((response:any)=>{
     //   if(response){
     //     this.lists = response;
@@ -24,5 +24,5 @@ export class AlbumComponent {
     // })
 
     // console.error("this is an error")
-  }
+    }
 }

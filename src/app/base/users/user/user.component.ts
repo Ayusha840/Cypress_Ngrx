@@ -25,6 +25,7 @@ export class UserComponent implements OnInit {
     deleteUser(id: any) {
         this.service.deleteUser("user", id).subscribe(
             (res) => {
+                // eslint-disable-next-line no-underscore-dangle
                 this.userList = this.userList.filter((el: any) => el._id !== id)
             },
             (err) => {},

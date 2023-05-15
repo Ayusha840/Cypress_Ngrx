@@ -1,6 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "parser": "babel-eslint",
   "overrides": [
     {
       "files": ["*.ts"],
@@ -13,6 +14,7 @@
       "parser": "@typescript-eslint/parser",
       "plugins": ["@typescript-eslint"],
       "rules": {
+        "camelcase": "warn",
         "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
         "no-underscore-dangle": "error",
         "no-warning-comments": [

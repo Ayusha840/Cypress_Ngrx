@@ -1,4 +1,3 @@
-import { async } from 'rxjs'
 import HeaderAction from '../pageobject/pageaction/headerAction'
 import UserAction from '../pageobject/pageaction/userAction'
 const locator = require('../locator.json')

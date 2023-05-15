@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { AdminAuthGuard } from './admin-auth.guard';
+import { AdminAuthGuard } from "./admin-auth.guard";
 
-describe('AdminAuthGuard', () => {
-  let guard: AdminAuthGuard;
+describe("AdminAuthGuard", () => {
+    let guard: AdminAuthGuard;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    guard = TestBed.inject(AdminAuthGuard);
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({});
+        guard = TestBed.inject(AdminAuthGuard);
+    });
 
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
-  });
+    it("should be created", () => {
+        expect(guard).toBeTruthy();
+    });
 });
