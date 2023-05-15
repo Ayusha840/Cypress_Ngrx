@@ -1,21 +1,20 @@
 <h1>User List</h1>
-<button class="btn btn-success" (click)="router.navigate(['add-user'])">
-  +Add
-</button>
+<button class="btn btn-success" (click)="router.navigate(['add-user'])">+Add</button>
 <section>
-  <div class="card box" *ngFor="let item of userList; let i = index">
-    <div class="card-header">{{ item.first_name + " " + item.last_name }}</div>
-    <div class="card-body">
-      <img src="{{ item.avatar }}" alt="" />
-      <small>
-        <strong>
-          {{ item.email }}
-        </strong>
-      </small>
+    <div class="card box" *ngFor="let item of userList;let i = index;">
+        <div class="card-header">{{item.first_name +' '+item.last_name}}   </div>
+            <div class="card-body">
+                <img src="{{appConstant.defaultImage}}" alt="">
+                <small> 
+                  <strong>
+                    {{item.email}}
+                  </strong>
+                </small>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-danger" (click)="deleteUser(item._id)">DL</button>
+                <button class="btn btn-muted" (click)="userDetail(item._id)">UP</button>
+
+            </div>
     </div>
-    <div class="card-footer">
-      <button class="btn btn-muted" (click)="deleteUser(item.id)">DL</button>
-      <button class="btn btn-muted">DE</button>
-    </div>
-  </div>
 </section>

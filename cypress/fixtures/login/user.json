@@ -1,0 +1,32 @@
+{
+    "backendReq":{
+        "title":"Login",
+        "email":"ashish.rathore@calsoftinc.com",
+        "password":123456,
+        "alertMsg":"Invalid credential!!!",
+        "role":"suppport",
+        "button":"Submit"
+    },
+    "validata":{
+        "title":"Login",
+        "email":"ashish@calsoftinc.com",
+        "password":123456,
+        "alertMsg":"Invalid credential!!!",
+        "button":"Submit"
+    },
+    "adminvalidata":{
+        "title":"Login",
+        "email":"admin@calsoftinc.com",
+        "password":"admin@123",
+        "alertMsg":"Invalid credential!!!",
+        "role":"admin",
+        "button":"Submit"
+    },
+    "invalidData":{
+        "title":"Login",
+        "email":"ashish.rathorecalsoftinc.com",
+        "password":123456,
+        "alertMsg":"Invalid credential!!!",
+        "button":"Submit"
+    }
+}

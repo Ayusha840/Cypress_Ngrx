@@ -17,4 +17,8 @@ section .form-section {
 }
 section .form-section form {
   width: 33rem;
+}
+
+.is-error {
+  border: 1px solid red !important;
 }/*# sourceMappingURL=login.component.css.map */

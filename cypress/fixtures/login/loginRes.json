@@ -1,0 +1,30 @@
+{
+  "support": {
+    "message": "Hi, ashish rathore welcome!!!",
+    "res": {
+      "_id": "63e5e09b078f0be5b29308aa",
+      "businessName": "Indori Jayka",
+      "name": "ashish rathore",
+      "email": "ashish.rathore@calsoftinc.com",
+      "password": "$2b$10$MpXhTS0Tugpu0czLHz5qqOYbgJdD89lVjg4J/q9PtfHm6HZ9ImBtS",
+      "role": "suppport",
+      "status": "active",
+      "__v": 0
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYXNoaXNoIHJhdGhvcmUiLCJlbWFpbCI6ImFzaGlzaC5yYXRob3JlQGNhbHNvZnRpbmMuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkTXBYaFRTMFR1Z3B1MGN6TEh6NXFxT1liZ0pkRDg5bFZqZzRKL3E5UHRmSG02SFo5SW1CdFMiLCJpYXQiOjE2ODM1NjIzMzAsImV4cCI6MTY4MzY0ODczMH0.jRq-a2-82oCpvusDrv6FzLogn2e47hOAoMMHkFKuKMs"
+  },
+  "admin": {
+    "message": "Hi, calsoft admin welcome!!!",
+    "res": {
+      "_id": "63e5e09b078f0be5b29308aa",
+      "businessName": "Indori Jayka",
+      "name": "calsoft admin",
+      "email": "admin@calsoftinc.com",
+      "password": "$2b$10$MpXhTS0Tugpu0czLHz5qqOYbgJdD89lVjg4J/q9PtfHm6HZ9ImBtS",
+      "role": "admin",
+      "status": "active",
+      "__v": 0
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYXNoaXNoIHJhdGhvcmUiLCJlbWFpbCI6ImFzaGlzaC5yYXRob3JlQGNhbHNvZnRpbmMuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkTXBYaFRTMFR1Z3B1MGN6TEh6NXFxT1liZ0pkRDg5bFZqZzRKL3E5UHRmSG02SFo5SW1CdFMiLCJpYXQiOjE2ODM1NjIzMzAsImV4cCI6MTY4MzY0ODczMH0.jRq-a2-82oCpvusDrv6FzLogn2e47hOAoMMHkFKuKMs"
+  }
+}

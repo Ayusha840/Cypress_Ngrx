@@ -4,6 +4,11 @@ section {
     width: 12rem !important;
     float: left !important;
     margin: 1rem;
+    .card-body {
+      img {
+        width: 6rem;
+      }
+    }
     .card-footer {
       background-color: transparent;
     }

@@ -1,0 +1,73 @@
+<section>
+    <h1>Add Product</h1>
+    <form [formGroup]="productForm">
+       <div class="row">
+        <div class="col-md-5 m-2 p-1">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" formControlName="title" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-5 m-2 p-1">
+            <div class="form-group">
+                <label>Category</label>
+                <select class="form-control" id="select" name="category" formControlName="category">
+                    <option  value="" disabled selected></option>
+                    <option value="{{item.name}}" *ngFor="let item of categoryList">
+                        {{item.name | titlecase}}
+                    </option>
+                </select>
+            </div>
+        </div>
+      
+        <div class="col-md-5 m-2 p-1">
+            <div class="form-group">
+                <label>Brand</label>
+                <div class="row">
+                <div class="col-md-4" *ngFor="let item of brandList">
+                    <input type="radio" name="brand" formControlName="brand" value="{{item.name}}">
+                    <span class="mx-1">{{item.name | titlecase}}</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 m-2 p-1">
+            <div class="form-group">
+                <label>Rating</label>
+                <div class="range">
+
+                    <input type="range"  name="rating" class="form-range" id="customRange4" formControlName="rating" min="0" step="0.01" max="5" >
+                </div>
+            </div>
+        </div>
+     
+        <div class="col-md-3 m-2 p-1">
+            <div class="form-group">
+                <label>Price</label>
+                <input type="text" name="price" formControlName="price" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-3 m-2 p-1">
+            <div class="form-group">
+                <label>Discount Percentage</label>
+                <input type="text" name="discountPercentage" formControlName="discountPercentage" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-md-3 m-2 p-1">
+            <div class="form-group">
+                <label>Stock</label>
+                <input type="text" name="stock" formControlName="stock" class="form-control">
+            </div>
+        </div>
+      
+        <div class="col-md-10 m-2 p-1">
+            <div class="form-group">
+                <label>Description</label>
+                <textarea  name="description" id="textarea" formControlName="description" class="form-control" cols="30" rows="3"></textarea>
+            </div>
+        </div>
+       
+       </div>
+    </form>
+</section>

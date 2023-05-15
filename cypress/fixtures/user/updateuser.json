@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "6450f44d60ff26ac52280111",
+    "first_name": "update record",
+    "last_name": "update record",
+    "email": "update_record.bluth@reqres.in"
+  },
+  {
+    "_id": "644bcdfaad9497c34f7cf4a5",
+    "first_name": "dummy2",
+    "last_name": "record",
+    "email": "dummy2.bluth@reqres.in"
+  }
+]

@@ -5,6 +5,8 @@ import { UserComponent } from './users/user/user.component'
 import { PostComponent } from './post/post.component'
 import { ProductComponent } from './product/product.component'
 import { AddUserComponent } from './users/add-user/add-user.component'
+import { AdminAuthGuard } from '../guard/admin-auth.guard'
+import { AddProductComponent } from './product/add-product/add-product.component'
 
 const routes: Routes = [
   {
@@ -14,10 +16,17 @@ const routes: Routes = [
       {
         path: 'user',
         component: UserComponent,
+        canActivate: [AdminAuthGuard],
       },
       {
-        path:'add-user',
-        component:AddUserComponent
+        path: 'add-user',
+        component: AddUserComponent,
+        canActivate: [AdminAuthGuard],
+      },
+      {
+        path: 'update-user/:id',
+        component: AddUserComponent,
+        canActivate: [AdminAuthGuard],
       },
       {
         path: 'post',
@@ -27,6 +36,10 @@ const routes: Routes = [
         path: 'product',
         component: ProductComponent,
       },
+      {
+        path:'add-product',
+        component:AddProductComponent
+      }
     ],
   },
 ]

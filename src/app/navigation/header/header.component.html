@@ -1,8 +1,10 @@
 <header>
-    <ul>
-        <li><button class="btn btn-mute" (click)="router.navigate(['/login'])">Login</button></li>
+    <p><button class="btn btn-mute" *ngIf="!logToken" (click)="router.navigate(['/login'])">Login</button></p>
+    <ul class="menu" *ngIf="logToken">
         <li><button class="btn btn-mute" (click)="router.navigate(['/user'])">User</button></li>
         <li><button class="btn btn-mute" (click)="router.navigate(['/post'])">Post</button></li>
         <li><button class="btn btn-mute" (click)="router.navigate(['/product'])">Product</button></li>
+        <li><button class="btn btn-mute" (click)="logOutFun()">LogOut</button></li>
+
     </ul>
 </header>

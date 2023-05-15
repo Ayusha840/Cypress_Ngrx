@@ -1,20 +1,25 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
-import { AppService } from 'src/app/services/app.service';
+import { ActivatedRoute, Router } from '@angular/router'
+import { AppService } from 'src/app/services/app.service'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.scss']
+  styleUrls: ['./add-user.component.scss'],
 })
-export class AddUserComponent {
+export class AddUserComponent implements OnInit {
   addUserForm: FormGroup
-  tab:string = '';
-  selectedFiles: FileList | any;
-  currentFileUpload: File | any;
-  constructor(private fb: FormBuilder,    
+  tab: string = ''
+  image: string = ''
+  userID:any;
+  constructor(
+    private fb: FormBuilder,
     private _appService: AppService,
-    ) {
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+  ) {
     this.addUserForm = fb.group({
       first_name: new FormControl('', Validators.required),
       last_name: new FormControl('', Validators.required),
@@ -22,23 +27,65 @@ export class AddUserComponent {
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
       ]),
-      avatar : new FormControl('')
+      avatar: new FormControl(''),
     })
   }
-  AdduserSubmit(form:boolean){
-    console.log(form);
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((item) => {
+      if (item.id) {
+        this.getDetail(item.id)
+        this.userID = item.id;
+      }
+    })
   }
-  setFormData(event: Event) {
-    const input = event.target as HTMLInputElement;
+  getDetail(id: any) {
+    this._appService.getDetail('user', id).subscribe((item: any) => {
+      if (item) {
+        this.addUserForm.setValue({
+          first_name: item.first_name,
+          last_name: item.last_name,
+          email: item.email,
+          avatar: item.avatar || '',
+        })
+      }
+    })
+  }
+  AdduserSubmit(form: boolean) {
+    if (form) {
+      if(!this.userID){
+
+        this._appService.post('user', this.addUserForm.value).subscribe((res) => {
+          if (res) {
+            this.router.navigate(['/user'])
+          }
+        })
+      }else{
+        this._appService.put(`user/${this.userID}`, this.addUserForm.value).subscribe((res) => {
+          if (res) {
+            this.router.navigate(['/user'])
+          }
+        })
+      }
+    }
+  }
+  onChange(event: any) {
+    const reader = new FileReader()
+    const input = event.target as HTMLInputElement
     if (!input.files?.length) {
-        return;
+      return
     }
-      const file = input.files[0];
-      console.log(file);
-      this._appService.uploadFile(file).subscribe((res)=>{
-        console.log(res);
+    const file = input.files[0]
+    this._appService.uploadFile(file).subscribe((res: any) => {
+      this.addUserForm.patchValue({
+        avatar: res.image,
+      })
+    })
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        this.image = reader.result as string
+      }
     }
-    )
-      
-}
+  }
 }

@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
     APIUrl:'http://localhost:3000',
-    S_KEY:'mwnebrvtcyxuzioapsldkfjg'
+    S_KEY:'mwnebrvtcyxuzioapsldkfjg',
+    defaultImage:'/assets/images/default.png'
   };

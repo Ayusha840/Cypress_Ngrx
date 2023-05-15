@@ -1,1 +1,10 @@
-/*# sourceMappingURL=add-user.component.css.map */
+.image {
+  display: grid;
+  place-items: center;
+}
+.image .imageSection {
+  width: 24rem;
+}
+.image .imageSection img {
+  width: 100%;
+}/*# sourceMappingURL=add-user.component.css.map */

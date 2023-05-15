@@ -1,23 +1,6 @@
+/// <reference types="cypress" />
 // ***********************************************
-// This example namespace declaration will help
-// with Intellisense and code completion in your
-// IDE or Text Editor.
-// ***********************************************
-// declare namespace Cypress {
-//   interface Chainable<Subject = any> {
-//     customCommand(param: any): typeof customCommand;
-//   }
-// }
-//
-// function customCommand(param: any): void {
-//   console.warn(param);
-// }
-//
-// NOTE: You can use it like so:
-// Cypress.Commands.add('customCommand', customCommand);
-//
-// ***********************************************
-// This example commands.js shows you how to
+// This example commands.ts shows you how to
 // create various custom commands and overwrite
 // existing commands.
 //
@@ -28,16 +11,86 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
+// Cypress.Commands.add('login', (email, password) => { ... })
 //
 //
 // -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
+// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
 //
 // -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
+// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
 //
 //
 // -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+//
+// declare global {
+//   namespace Cypress {
+//     interface Chainable {
+//       login(email: string, password: string): Chainable<void>
+//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
+//     }
+//   }
+// }
+import '@testing-library/cypress/add-commands'
+import { environment } from 'src/environment/environment'
+import * as CryptoJS from 'crypto-js'
+
+//-------- set localstorage common function
+Cypress.Commands.add('setToken', (key: string, value) => {
+  cy.window().then((window) => {
+    let token = CryptoJS.AES.encrypt(JSON.stringify(value), environment.S_KEY)
+      .toString()
+      .replace('+', 'xMl3Jk')
+      .replace('/', 'Por21Ld')
+      .replace('=', 'Ml32')
+      .replace('+', 'xMl3Jk')
+      .replace('/', 'Por21Ld')
+      .replace('=', 'Ml32')
+      .replace('+', 'xMl3Jk')
+      .replace('/', 'Por21Ld')
+      .replace('=', 'Ml32')
+
+    window.localStorage.setItem(key, token)
+  })
+})
+
+//-------- get localstorage data
+Cypress.Commands.add('getToken', (key: string) => {
+  cy.window().then((window) => {
+let local:any = window.localStorage.getItem(key)
+   if(local){
+    let bcrypt = CryptoJS.AES.decrypt(
+      local
+        .replace('xMl3Jk', '+')
+        .replace('Por21Ld', '/')
+        .replace('Ml32', '=')
+        .replace('xMl3Jk', '+')
+        .replace('Por21Ld', '/')
+        .replace('Ml32', '=')
+        .replace('xMl3Jk', '+')
+        .replace('Por21Ld', '/')
+        .replace('Ml32', '='),
+      environment.S_KEY,
+    )
+    if (bcrypt.toString()) {
+      
+      return JSON.parse(bcrypt.toString(CryptoJS.enc.Utf8))
+    }
+    return local 
+   }
+return false;
+  })
+})
+
+//-------- function for removing localstorage
+
+Cypress.Commands.add('removeToken', (key: string) => {
+  cy.window().then((window) => {
+    window.localStorage.removeItem(key)
+  })
+})
+
