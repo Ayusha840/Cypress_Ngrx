@@ -4,11 +4,13 @@ import {
     ElementRef,
     OnInit,
     ViewChild,
-} from "@angular/core"
-import { Router } from "@angular/router"
-import { fromEvent } from "rxjs"
-import { AppService } from "src/app/services/app.service"
-import { CommonService } from "src/app/services/common.service"
+} from "@angular/core";
+import { Router } from "@angular/router";
+import { fromEvent } from "rxjs";
+import { loginInterface } from "src/app/model/login.interface";
+import { productInterface } from "src/app/model/product.interface";
+import { CommonService } from "src/app/services/common.service";
+import { ProductService } from "./../../services/product.service";
 
 @Component({
     selector: "app-product",
@@ -17,43 +19,52 @@ import { CommonService } from "src/app/services/common.service"
 })
 export class ProductComponent implements OnInit, AfterViewInit {
     constructor(
-    private service: AppService,
     public router: Router,
     public commonService: CommonService,
+    private productService: ProductService,
     ) {}
-    filterType = ["title", "category", "brand", "rating"]
-    productList: any
-    localList: any
-    type = "title"
-    logData: any
-  @ViewChild("filter") filter!: ElementRef
+
+    filterType = ["title", "category", "brand", "rating"];
+    productList: productInterface[] = [];
+    localList: productInterface[] = [];
+    type = "title";
+    logData!: loginInterface;
+
+  @ViewChild("filter") filter!: ElementRef;
+
   ngOnInit(): void {
       this.logData = this.commonService.getDecryptedItem(
           localStorage.getItem("loginToken"),
-      )
+      );
+      this.getProductList();
+  }
 
-      this.getProductList()
-  }
   getProductList() {
-      this.service.get("product").subscribe((item) => {
-          this.productList = this.localList = item
-      })
+      this.productService.get("product").subscribe((item: productInterface[]) => {
+          this.productList = this.localList = item;
+      });
   }
-  changeFilter(event: any) {
-      this.type = event.target.value
-      this.productList = this.localList
+
+  changeFilter(event: Event) {
+      this.type = (event.target as HTMLInputElement).value;
+      this.productList = this.localList;
   }
+
   ngAfterViewInit(): void {
-      const text = fromEvent(this.filter.nativeElement, "keyup")
+      const text = fromEvent(this.filter.nativeElement, "keyup");
+
       text.subscribe((item: any) => {
-          if (item.target.value) {
+          const text = item.target as HTMLInputElement;
+          const type = this.type;
+
+          if (text.value) {
               this.productList = this.localList.filter(
-                  (el: any) =>
-                      el[this.type].toLowerCase().indexOf(item.target.value) > -1,
-              )
+                  (el: any) => el[type].toLowerCase().indexOf(text.value) > -1,
+              );
           } else {
-              this.productList = this.localList
+              this.productList = this.localList;
           }
-      })
+      });
   }
+  
 }

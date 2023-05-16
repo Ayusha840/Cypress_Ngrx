@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core"
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { ActivatedRoute, Router } from "@angular/router"
-import { AppService } from "src/app/services/app.service"
+import { imageInterface } from "src/app/model/image.interface"
+import { userInterface } from "src/app/model/user.interface"
+import { UserService } from "src/app/services/user.service"
 
 @Component({
     selector: "app-add-user",
@@ -12,21 +14,21 @@ export class AddUserComponent implements OnInit {
     addUserForm: FormGroup
     tab = ""
     image = ""
-    userID:any;
+    userID="";
     constructor(
     private fb: FormBuilder,
-    private appService: AppService,
+    private userService: UserService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     ) {
         this.addUserForm = fb.group({
-            first_name: new FormControl("", Validators.required),
-            last_name: new FormControl("", Validators.required),
-            email: new FormControl("", [
+            "first_name": new FormControl("", Validators.required),
+            "last_name": new FormControl("", Validators.required),
+            "email": new FormControl("", [
                 Validators.required,
                 Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$"),
             ]),
-            avatar: new FormControl(""),
+            "avatar": new FormControl(""),
         })
     }
     ngOnInit(): void {
@@ -37,14 +39,14 @@ export class AddUserComponent implements OnInit {
             }
         })
     }
-    getDetail(id: any) {
-        this.appService.getDetail("user", id).subscribe((item: any) => {
+    getDetail(id: string) {
+        this.userService.getDetail("user", id).subscribe((item: userInterface) => {
             if (item) {
                 this.addUserForm.setValue({
-                    first_name: item.first_name,
-                    last_name: item.last_name,
-                    email: item.email,
-                    avatar: item.avatar || "",
+                    "first_name": item.first_name,
+                    "last_name": item.last_name,
+                    "email": item.email,
+                    "avatar": item.avatar || "",
                 })
             }
         })
@@ -53,13 +55,13 @@ export class AddUserComponent implements OnInit {
         if (form) {
             if(!this.userID){
 
-                this.appService.post("user", this.addUserForm.value).subscribe((res) => {
+                this.userService.post("user", this.addUserForm.value).subscribe((res) => {
                     if (res) {
                         this.router.navigate(["/user"])
                     }
                 })
             }else{
-                this.appService.put(`user/${this.userID}`, this.addUserForm.value).subscribe((res) => {
+                this.userService.put(`user/${this.userID}`, this.addUserForm.value).subscribe((res) => {
                     if (res) {
                         this.router.navigate(["/user"])
                     }
@@ -67,20 +69,20 @@ export class AddUserComponent implements OnInit {
             }
         }
     }
-    onChange(event: any) {
+    onChange(event: Event) {
         const reader = new FileReader()
         const input = event.target as HTMLInputElement
         if (!input.files?.length) {
             return
         }
         const file = input.files[0]
-        this.appService.uploadFile(file).subscribe((res: any) => {
+        this.userService.uploadFile(file).subscribe((res: imageInterface) => {
             this.addUserForm.patchValue({
                 avatar: res.image,
             })
         })
-        if (event.target.files && event.target.files.length) {
-            const [file] = event.target.files
+        if (input.files && input.files.length) {
+            const file = input.files[0]
             reader.readAsDataURL(file)
             reader.onload = () => {
                 this.image = reader.result as string

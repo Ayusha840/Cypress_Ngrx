@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { loginInterface } from "src/app/model/login.interface";
 import { CommonService } from "src/app/services/common.service";
 
 @Component({
@@ -11,7 +12,7 @@ export class WelcomeComponent implements OnInit {
     constructor(
     private commonService:CommonService
     ){}
-    localData:any;
+    localData:loginInterface | undefined;
     ngOnInit(): void {
         this.localData =   this.commonService.getDecryptedItem(localStorage.getItem("loginToken"))  }
 

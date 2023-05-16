@@ -1,14 +1,14 @@
-import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule, ReactiveFormsModule} from "@angular/forms"
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NavigationModule } from "../navigation/navigation.module";
 import { BaseRoutingModule } from "./base-routing.module";
 import { BaseComponent } from "./base/base.component";
-import { NavigationModule } from "../navigation/navigation.module";
-import { UserComponent } from "./users/user/user.component";
 import { PostComponent } from "./post/post.component";
+import { AddProductComponent } from "./product/add-product/add-product.component";
 import { ProductComponent } from "./product/product.component";
 import { AddUserComponent } from "./users/add-user/add-user.component";
-import { AddProductComponent } from "./product/add-product/add-product.component";
+import { UserComponent } from "./users/user/user.component";
 
 @NgModule({
     declarations: [
@@ -17,14 +17,14 @@ import { AddProductComponent } from "./product/add-product/add-product.component
         PostComponent,
         ProductComponent,
         AddUserComponent,
-        AddProductComponent
+        AddProductComponent,
     ],
     imports: [
         CommonModule,
         BaseRoutingModule,
         NavigationModule,
         ReactiveFormsModule,
-        FormsModule
-    ]
+        FormsModule,
+    ],
 })
-export class BaseModule { }
+export class BaseModule {}
