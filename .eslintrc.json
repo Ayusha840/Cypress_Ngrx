@@ -17,6 +17,13 @@
         "camelcase": "warn",
         "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
         "no-underscore-dangle": "error",
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "ForStatement",
+            "message": "Traditional for loop is not allowed. Use functional or iteration methods instead."
+          }
+        ],
         "no-warning-comments": [
           "warn",
           {
