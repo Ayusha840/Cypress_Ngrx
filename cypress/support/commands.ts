@@ -35,62 +35,61 @@
 //     }
 //   }
 // }
-import '@testing-library/cypress/add-commands'
-import { environment } from 'src/environment/environment'
-import * as CryptoJS from 'crypto-js'
+import "@testing-library/cypress/add-commands"
+import * as CryptoJS from "crypto-js"
+import { environment } from "src/environment/environment"
 
 //-------- set localstorage common function
-Cypress.Commands.add('setToken', (key: string, value) => {
-  cy.window().then((window) => {
-    let token = CryptoJS.AES.encrypt(JSON.stringify(value), environment.S_KEY)
-      .toString()
-      .replace('+', 'xMl3Jk')
-      .replace('/', 'Por21Ld')
-      .replace('=', 'Ml32')
-      .replace('+', 'xMl3Jk')
-      .replace('/', 'Por21Ld')
-      .replace('=', 'Ml32')
-      .replace('+', 'xMl3Jk')
-      .replace('/', 'Por21Ld')
-      .replace('=', 'Ml32')
+Cypress.Commands.add("setToken", (key: string, value) => {
+    cy.window().then((window) => {
+        const token = CryptoJS.AES.encrypt(JSON.stringify(value), environment.S_KEY)
+            .toString()
+            .replace("+", "xMl3Jk")
+            .replace("/", "Por21Ld")
+            .replace("=", "Ml32")
+            .replace("+", "xMl3Jk")
+            .replace("/", "Por21Ld")
+            .replace("=", "Ml32")
+            .replace("+", "xMl3Jk")
+            .replace("/", "Por21Ld")
+            .replace("=", "Ml32")
 
-    window.localStorage.setItem(key, token)
-  })
+        window.localStorage.setItem(key, token)
+    })
 })
 
 //-------- get localstorage data
-Cypress.Commands.add('getToken', (key: string) => {
-  cy.window().then((window) => {
-let local:any = window.localStorage.getItem(key)
-   if(local){
-    let bcrypt = CryptoJS.AES.decrypt(
-      local
-        .replace('xMl3Jk', '+')
-        .replace('Por21Ld', '/')
-        .replace('Ml32', '=')
-        .replace('xMl3Jk', '+')
-        .replace('Por21Ld', '/')
-        .replace('Ml32', '=')
-        .replace('xMl3Jk', '+')
-        .replace('Por21Ld', '/')
-        .replace('Ml32', '='),
-      environment.S_KEY,
-    )
-    if (bcrypt.toString()) {
+Cypress.Commands.add("getToken", (key: string) => {
+    cy.window().then((window) => {
+        const local:any = window.localStorage.getItem(key)
+        if(local){
+            const bcrypt = CryptoJS.AES.decrypt(
+                local
+                    .replace("xMl3Jk", "+")
+                    .replace("Por21Ld", "/")
+                    .replace("Ml32", "=")
+                    .replace("xMl3Jk", "+")
+                    .replace("Por21Ld", "/")
+                    .replace("Ml32", "=")
+                    .replace("xMl3Jk", "+")
+                    .replace("Por21Ld", "/")
+                    .replace("Ml32", "="),
+                environment.S_KEY,
+            )
+            if (bcrypt.toString()) {
       
-      return JSON.parse(bcrypt.toString(CryptoJS.enc.Utf8))
-    }
-    return local 
-   }
-return false;
-  })
+                return JSON.parse(bcrypt.toString(CryptoJS.enc.Utf8))
+            }
+            return local 
+        }
+        return false;
+    })
 })
 
 //-------- function for removing localstorage
 
-Cypress.Commands.add('removeToken', (key: string) => {
-  cy.window().then((window) => {
-    window.localStorage.removeItem(key)
-  })
+Cypress.Commands.add("removeToken", (key: string) => {
+    cy.window().then((window) => {
+        window.localStorage.removeItem(key)
+    })
 })
-

@@ -91,7 +91,6 @@ describe("product component test case", () => {
         const idName = field.getAttribute("id");
 
         const fieldType = field.getAttribute("type");
-        // formData.push({ field: fieldName, type: fieldType })
 
         switch (fieldType || idName) {
           case "text":
@@ -127,6 +126,5 @@ describe("product component test case", () => {
         }
       });
     });
-    // headerAction.navigationTo('add-product')
   });
 });

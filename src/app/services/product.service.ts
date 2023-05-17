@@ -3,28 +3,20 @@ import { Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { Observable } from "rxjs";
 import { environment } from "../../environment/environment";
-import { loginDataInterface, loginInterface } from "../model/login.interface";
-
-interface userRes {
-  message: string;
-  token: string;
-  res: loginInterface;
-}
+import { productInterface } from "../model/product.interface";
 
 @Injectable({
     providedIn: "root",
 })
-export class AppService {
-    
-    headers = new HttpHeaders();
-
+export class ProductService {
+    headers= new HttpHeaders();
+        
     constructor(private http: HttpClient, private toasterService: ToastrService) {
         this.headers
             .set("content-type", "application/json")
-            .set("Access-Control-Allow-Origin", "*");
+            .set("Access-Control-Allow-Origin", "*")
     }
-
-    post(url: string, req: loginDataInterface): Observable<userRes> {
-        return this.http.post<userRes>(`${environment.APIUrl}/${url}`, req);
+    get(url: string): Observable<productInterface[]> {
+        return this.http.get<productInterface[]>(`${environment.APIUrl}/${url}`);
     }
 }

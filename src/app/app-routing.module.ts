@@ -13,11 +13,6 @@ const routes: Routes = [
         loadChildren:()=>
             import("./base/base.module").then(m=>m.BaseModule),
         canActivate:[CheckTokenGuard]
-    },
-    {
-        path:"dashboard",
-        loadChildren:()=>
-            import("./dashboard/dashboard.module").then(m=>m.DashboardModule)
     }
 ];
 
