@@ -51,20 +51,21 @@ export class ProductComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-      const text = fromEvent(this.filter.nativeElement, "keyup");
+      const text = fromEvent<KeyboardEvent>(this.filter.nativeElement, "keyup");
 
-      text.subscribe((item: any) => {
+      text.subscribe((item: KeyboardEvent) => {
           const text = item.target as HTMLInputElement;
-          const type = this.type;
-
           if (text.value) {
-              this.productList = this.localList.filter(
-                  (el: any) => el[type].toLowerCase().indexOf(text.value) > -1,
-              );
+              this.productList = this.localList.filter((el: productInterface) => {
+                  const propertyValue = el[this.type];
+                  if (typeof propertyValue === "string") {
+                      return propertyValue.toLowerCase().indexOf(text.value.toLowerCase()) > -1;
+                  }
+                  return false;
+              }) as productInterface[];
           } else {
               this.productList = this.localList;
           }
       });
   }
-  
 }

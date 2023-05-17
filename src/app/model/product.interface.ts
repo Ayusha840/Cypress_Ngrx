@@ -1,4 +1,5 @@
 export interface productInterface{
+    [key: string]: string | number | undefined | string[] | Array<[]>;
     _id:string;
     title:string;
     description:string;
