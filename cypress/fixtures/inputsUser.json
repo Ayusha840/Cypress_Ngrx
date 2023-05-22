@@ -1,0 +1,12 @@
+{
+  "last_name": "Biswas",
+  "first_name": "Shibam",
+  "email": "shibam.biswas@calsoftinc.com",
+  "gender": "male",
+  "terms" : true,
+  "user_type" : "guest",
+  "avatar": {
+    "name": "example.txt",
+    "type": "text/plain"
+  }
+}
