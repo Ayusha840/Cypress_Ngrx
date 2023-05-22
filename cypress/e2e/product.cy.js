@@ -72,7 +72,7 @@ describe("product component test case", () => {
     });
   });
 
-  it.only("should add button see", () => {
+  it("should add button see", () => {
     cy.setToken("loginToken", logData.admin.res);
 
     cy.get(".form-group:nth-child(3)").should("be.visible");

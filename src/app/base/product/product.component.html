@@ -1,45 +1,54 @@
 <div class="filter-section my-3">
-    <div class="form-group">
-        <input type="text" #filter placeholder="Search Product" class="form-control">
-    </div>
-    <div class="form-group">
-        <select class="form-control filter-select" [ngModel]="type" (change)="changeFilter($event)">
-            <option selected disabled>Filter Type</option>
-            <option value="{{item}}" *ngFor="let item of filterType">{{item | titlecase}}</option>
-        </select>
-    </div>
-    <div class="form-group" *ngIf="logData.role==='admin'">
-        <button class="btn btn-success" (click)="router.navigate(['add-product'])">Add Product</button>
-    </div>
+  <div class="form-group">
+    <input
+      type="text"
+      #filter
+      placeholder="Search Product"
+      class="form-control" />
+  </div>
+  <div class="form-group">
+    <select
+      class="form-control filter-select"
+      [ngModel]="type"
+      (change)="changeFilter($event)">
+      <option selected disabled>Filter Type</option>
+      <option value="{{ item }}" *ngFor="let item of filterType">
+        {{ item | titlecase }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="logData.role === 'admin'">
+    <button class="btn btn-success" (click)="router.navigate(['add-product'])">
+      Add Product
+    </button>
+  </div>
 </div>
 <section class="section">
-    <div class="card box" *ngFor="let item of productList;let i = index;">
-        <div class="card-header">
-            {{item.title}}  
-         </div>
-            <div class="card-body">
-                <img src="{{item.thumbnail}}" alt="">
-                <p>{{item.description}}</p>
-              
-            </div>
-            <div class="card-footer">
-                
-                <div class="pro-detail">
-                    <div class="">
-                        <p>Category</p>
-                        <p>Brand</p>
-                        <p>Rating</p>
-                        <p>DiscountPercentage</p>
-                        <p>Price</p>
-                    </div>
-                    <div class="">
-                        <p>{{item.category}}</p>
-                        <p>{{item.brand}}</p>
-                        <p>{{item.rating}}</p>
-                        <p>{{item.discountPercentage}}</p>
-                        <p>{{item.price}}</p>
-                    </div>
-                </div>
-            </div>
+  <div class="card box" *ngFor="let item of productList; let i = index">
+    <div class="card-header">
+      {{ item.title }}
     </div>
+    <div class="card-body">
+      <img src="{{ item.thumbnail }}" alt="" />
+      <p>{{ item.description }}</p>
+    </div>
+    <div class="card-footer">
+      <div class="pro-detail">
+        <div class="">
+          <p>Category</p>
+          <p>Brand</p>
+          <p>Rating</p>
+          <p>DiscountPercentage</p>
+          <p>Price</p>
+        </div>
+        <div class="">
+          <p>{{ item.category }}</p>
+          <p>{{ item.brand }}</p>
+          <p>{{ item.rating }}</p>
+          <p>{{ item.discountPercentage }}</p>
+          <p>{{ item.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

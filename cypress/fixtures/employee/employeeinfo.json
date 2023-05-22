@@ -1,0 +1,70 @@
+{
+  "formRes": {
+    "userName": "Ashish Rathore",
+    "email": "ashish.rathore@calsoftinc.com",
+    "invalidemail": "ashish.rathorecalsoftinc.com",
+    "password": "123456",
+    "college": "IIST",
+    "experiance": "4yrs",
+    "graduationYear": "2014-09-13",
+    "skillSet": [
+      {
+        "name": "angular"
+      },
+      {
+        "name": "nodeJs"
+      },
+      {
+        "name": "javascript"
+      },
+      {
+        "name": "react"
+      }
+    ],
+    "projectdetail":[
+        {
+            "name": "Clinate",
+            "client": "DAN",
+            "role": "Full Stack",
+            "teamSize": "4",
+            "projectFrom": "2022-10-10",
+            "projectTill": "2023-01-01",
+            "technologyUsed": "angular",
+            "description": "Appointment System",
+            "updates": "Deployed on server"
+        },
+        {
+            "name": "marco",
+            "client": "Johnny",
+            "role": "front End",
+            "teamSize": "3",
+            "projectFrom": "2012-12-12",
+            "projectTill": "2013-12-13",
+            "technologyUsed": "angular",
+            "description": "2222222222222222222222222-----",
+            "updates": "22222222222222222222--------"
+        }
+    ]
+  },
+
+  "delSkills": {
+    "userName": "Ashish Rathore",
+    "email": "ashish.rathore@calsoftinc.com",
+    "invalidemail": "ashish.rathorecalsoftinc.com",
+    "password": "123456",
+    "college": "IIST",
+    "experiance": "4yrs",
+    "graduationYear": "2014-09-13",
+    "skillSet": [
+      {
+        "name": "angular"
+      },
+      {
+        "name": "javascript"
+      },
+      {
+        "name": "react"
+      }
+    ]
+  }
+}
