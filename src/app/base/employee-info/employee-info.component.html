@@ -1,0 +1,335 @@
+<form [formGroup]="employeeForm" (ngSubmit)="addInfo(employeeForm.valid)">
+  <div class="btn-flex">
+    <h1>Employee Information</h1>
+    <button class="btn btn-success" type="submit">Submit</button>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="">Name</label>
+        <input
+          type="text"
+          data-cy="form-control"
+          formControlName="userName"
+          class="form-control"
+          [ngClass]="{
+            isErr:
+              (form.userName.dirty || form.userName.touched || formSubmit) &&
+              form.userName.errors?.required
+          }" />
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="">Email</label>
+        <input
+          type="text"
+          data-cy="form-control"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{
+            isErr:
+              (form.email.dirty || form.email.touched || formSubmit) &&
+              (form.email.errors?.required || form.email.errors?.pattern)
+          }" />
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="">Password</label>
+        <input
+          type="password"
+          data-cy="form-control"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{
+            isErr:
+              (form.password.dirty || form.password.touched || formSubmit) &&
+              form.password.errors?.required
+          }" />
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="">College</label>
+        <input
+          type="text"
+          data-cy="form-control"
+          formControlName="college"
+          class="form-control"
+          [ngClass]="{
+            isErr:
+              (form.college.dirty || form.college.touched || formSubmit) &&
+              form.college.errors?.required
+          }" />
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="">Experiance</label>
+        <input
+          type="text"
+          data-cy="form-control"
+          formControlName="experiance"
+          class="form-control"
+          [ngClass]="{
+            isErr:
+              (form.experiance.dirty ||
+                form.experiance.touched ||
+                formSubmit) &&
+              form.experiance.errors?.required
+          }" />
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="">Graduation Year</label>
+        <input
+          type="date"
+          data-cy="form-control"
+          formControlName="graduationYear"
+          class="form-control"
+          [ngClass]="{
+            isErr:
+              (form.graduationYear.dirty ||
+                form.graduationYear.touched ||
+                formSubmit) &&
+              form.graduationYear.errors?.required
+          }" />
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="box">
+        <label for="">Skill Set </label>
+        <p class="mx-3" (click)="addSkills('new')">+</p>
+      </div>
+      <div formArrayName="skillSet">
+        <div class="row">
+          <div
+            class="col-md-3 my-2"
+            *ngFor="let item of skillSet?.controls; let i = index"
+            [formGroupName]="i">
+            <div class="input-icon skills-section">
+              <div>
+                <input
+                  type="text"
+                  data-cy="form-array-item"
+                  id="form-array-item{{ i }}"
+                  class="form-control"
+                  formControlName="name"
+                  [ngClass]="{
+                    isErr:
+                      skillSet.value[i].name === '' &&
+                      (formSubmit || addNewSkill)
+                  }" />
+              </div>
+              <p
+                *ngIf="skillSet.value.length > 1"
+                class="mx-1"
+                (click)="removeSkills(i)">
+                -
+              </p>
+            </div>
+
+            <small
+              ><strong
+                data-cy="skill-err"
+                *ngIf="
+                  skillSet.value[i].name === '' && (formSubmit || addNewSkill)
+                "
+                class="text text-danger"
+                >Please Fill remain skillset first</strong
+              ></small
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+  <div formArrayName="projectDetails">
+    <div
+      *ngFor="let item of projectDetails.controls; let i = index"
+      [formGroupName]="i">
+      <div class="input-icon">
+        <h3>Project Detail ({{ i + 1 }})</h3>
+        <p class="mx-1" (click)="removeProject(i)">-</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form-group" id="project-form-array{{ i }}">
+            <label for="">Project Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name{{ i }}"
+              data-cy="project-form-array"
+              formControlName="name"
+              [ngClass]="{
+                isErr:
+                  projectDetails.value[i].name === '' &&
+                  (formSubmit || addNewProject)
+              }" />
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group" id="project-form-array{{ i }}">
+            <label for="">Client</label>
+            <input
+              type="text"
+              class="form-control"
+              id="client{{ i }}"
+              data-cy="project-form-array"
+              formControlName="client"
+              [ngClass]="{
+                isErr:
+                  projectDetails.value[i].client === '' &&
+                  (formSubmit || addNewProject)
+              }" />
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group" id="project-form-array{{ i }}">
+            <label for="">Role</label>
+            <input
+              type="text"
+              class="form-control"
+              id="role{{ i }}"
+              data-cy="project-form-array"
+              formControlName="role"
+              [ngClass]="{
+                isErr:
+                  projectDetails.value[i].role === '' &&
+                  (formSubmit || addNewProject)
+              }" />
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group" id="project-form-array{{ i }}">
+            <label for="">Team Size</label>
+            <input
+              type="text"
+              class="form-control"
+              id="team{{ i }}"
+              data-cy="project-form-array"
+              formControlName="teamSize"
+              [ngClass]="{
+                isErr:
+                  projectDetails.value[i].teamSize === '' &&
+                  (formSubmit || addNewProject)
+              }" />
+          </div>
+        </div>
+        <div class="col-md-10">
+          <div class="form-group" id="project-form-array{{ i }}">
+            <label for="">Description</label>
+            <textarea
+              name=""
+              id="descarea{{ i }}"
+              cols="30"
+              rows="3"
+              type="textarea"
+              class="form-control"
+              data-cy="project-form-array"
+              formControlName="description"
+              [ngClass]="{
+                isErr:
+                  projectDetails.value[i].description === '' &&
+                  (formSubmit || addNewProject)
+              }"></textarea>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group" id="project-form-array{{ i }}">
+            <label for="">Project From</label>
+            <input
+              type="date"
+              formControlName="projectFrom"
+              class="form-control"
+              id="from{{ i }}"
+              data-cy="project-form-array"
+              [ngClass]="{
+                isErr:
+                  projectDetails.value[i].projectFrom === '' &&
+                  (formSubmit || addNewProject)
+              }" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group" id="project-form-array{{ i }}">
+            <label for="">Project Till</label>
+            <input
+              type="date"
+              formControlName="projectTill"
+              class="form-control"
+              id="till{{ i }}"
+              data-cy="project-form-array"
+              [ngClass]="{
+                isErr:
+                  projectDetails.value[i].projectTill === '' &&
+                  (formSubmit || addNewProject)
+              }" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group" id="project-form-array{{ i }}">
+            <label for="">Technology Used</label>
+            <select
+              name=""
+              id="tech{{ i }}"
+              type="select"
+              class="form-control"
+              data-cy="project-form-array"
+              formControlName="technologyUsed"
+              [ngClass]="{
+                isErr:
+                  projectDetails.value[i].technologyUsed === '' &&
+                  (formSubmit || addNewProject)
+              }">
+              <option value="" disabled selected></option>
+              <option value="{{ item?.name }}" *ngFor="let item of skillArr">
+                {{ item?.name | titlecase }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <div class="form-group" id="project-form-array{{ i }}">
+            <label for="">Last Updates</label>
+            <textarea
+              name=""
+              id="updatearea{{ i }}"
+              cols="30"
+              rows="3"
+              type="textarea"
+              class="form-control"
+              data-cy="project-form-array"
+              formControlName="updates"
+              [ngClass]="{
+                isErr:
+                  projectDetails.value[i].updates === '' &&
+                  (formSubmit || addNewProject)
+              }"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+    </div>
+
+    <strong
+      *ngIf="!employeeForm.valid && addNewProject"
+      class="text text-danger"
+      >Please Fill about fields</strong
+    >
+    <button
+      align="center"
+      *ngIf="employeeForm.valid"
+      (click)="addProjects('new')"
+      class="btn btn-success my-3">
+      Add Project
+    </button>
+  </div>
+</form>

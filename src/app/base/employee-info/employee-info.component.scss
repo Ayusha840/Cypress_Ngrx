@@ -1,0 +1,40 @@
+label {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.box {
+  display: flex;
+  width: 117px !important;
+  p {
+    background: green;
+  }
+}
+
+.isErr {
+  border: 1px solid red;
+}
+
+p {
+  &:hover {
+    cursor: pointer;
+  }
+  font-size: 14px;
+  width: 19px;
+  text-align: center;
+  padding: 4px;
+  border-radius: 50%;
+  font-weight: bold;
+
+  display: grid;
+  height: 19px;
+  margin-top: 11px;
+  place-content: center;
+}
+
+.input-icon {
+  display: flex;
+  justify-content: space-between;
+  p {
+    background: red;
+  }
+}

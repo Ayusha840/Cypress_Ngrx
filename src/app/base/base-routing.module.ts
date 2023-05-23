@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminAuthGuard } from "../guard/admin-auth.guard";
 import { BaseComponent } from "./base/base.component";
+import { EmployeeInfoComponent } from "./employee-info/employee-info.component";
 import { PostComponent } from "./post/post.component";
 import { AddProductComponent } from "./product/add-product/add-product.component";
 import { ProductComponent } from "./product/product.component";
@@ -40,6 +41,10 @@ const routes: Routes = [
                 path: "add-product",
                 component: AddProductComponent,
             },
+            {
+                path:"employee-info",
+                component:EmployeeInfoComponent
+            }
         ],
     },
 ];
